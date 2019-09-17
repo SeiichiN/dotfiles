@@ -21,7 +21,13 @@ NeoBundle 'vim-scripts/taglist.vim'
 " https://github.com/majutsushi/tagbar
 " NetBundle 'majutsushi/tagbar'
 
+" 保存時に自動的にエラーチェックをおこなう for merlin
+NeoBundle 'scrooloose/syntastic'
+
 call neobundle#end()
+""""""""""""""""""""""""""""""""""""""""""""""""
+" ここまで
+""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype plugin indent on
 " プラグインがインストールされているかチェック
@@ -123,3 +129,17 @@ let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1
 map <silent> <leader>E :TlistToggle<cr>
+
+highlight StatusLine ctermfg=94
+
+" for merlin.3.2.2
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" for ocp-indent.1.7.0
+set rtp^="/home/se-ichi/_opam/share/ocp-indent/vim"
+" 保存時に自動的にエラーチェックをおこなう
+let g:syntastic_ocaml_checkers = ['merlin']
+
+" htmlをJavaScript連結文字列に変換する
+vmap <silent> ;h :s?^\(\s*\)+ '\([^']\+\)',*\s*$?\1\2?g<CR>
+vmap <silent> ;q :s?^\(\s*\)\(.*\)\s*$? \1 + '\2'?<CR>
