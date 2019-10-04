@@ -132,12 +132,12 @@ map <silent> <leader>E :TlistToggle<cr>
 
 highlight StatusLine ctermfg=94
 
-" for merlin.3.2.2
+"  for merlin.3.2.2
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
-" for ocp-indent.1.7.0
+"  for ocp-indent.1.7.0
 set rtp^="/home/se-ichi/_opam/share/ocp-indent/vim"
-" 保存時に自動的にエラーチェックをおこなう
+"  保存時に自動的にエラーチェックをおこなう
 let g:syntastic_ocaml_checkers = ['merlin']
 
 " htmlをJavaScript連結文字列に変換する
